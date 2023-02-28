@@ -1,11 +1,15 @@
-# No arguments: `git status`
-# With arguments: acts like `git`
+#!/usr/bin/env zsh
 
 function git_main_branch() {
   if [[ $(git rev-parse --git-dir 2> /dev/null) ]]; then
-    git symbolic-ref -q HEAD | cut -d'/' -f3
-  else
-    return 1
+    default_branch=$(git config --get init.defaultBranch)
+    if $(git show-ref -q --verify refs/heads/$default_branch); then
+      echo $default_branch
+    elif $(git show-ref -q --verify refs/heads/main); then
+      echo "main"
+    else # fallback to master
+      echo "master"
+    fi
   fi
 }
 
