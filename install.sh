@@ -1,6 +1,7 @@
 #!/usr/bin/env zsh
 
 [[ ! -d $(brew --prefix) ]] && echo "homebrew is required" && exit 1
+[[ ! -f $HOME/.zshrc.local ]] && echo "export path" > ~/.zshrc.local
 
 if [[ ! -d $HOME/.zgenom ]]; then
   echo "Installing zgenom..."

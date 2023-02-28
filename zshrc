@@ -15,7 +15,6 @@ if ! zgenom saved; then
 
   zgenom compdef
 
-  #
   # extensions
   zgenom load jandamm/zgenom-ext-release
 
@@ -25,15 +24,6 @@ if ! zgenom saved; then
   zgenom ohmyzsh --completion plugins/docker-compose
   [[ "$(uname -s)" = Darwin ]] && zgenom ohmyzsh plugins/macos
 
-
-  # this is breaking things, need alternatives
-  # zgenom prezto
-  # zgenom prezto gpg
-  # # Load prezto tmux when tmux is installed
-  # if hash tmux &>/dev/null; then
-  #   zgenom prezto tmux
-  # fi
-
   zgenom load djui/alias-tips
   zgenom load hlissner/zsh-autopair
   zgenom load rupa/z
@@ -42,6 +32,7 @@ if ! zgenom saved; then
   zgenom release junegunn/fzf --pattern '*darwin_arm64*'
   zgenom load junegunn/fzf shell
   # zgenom load ubainvaes/fzf-marks
+
   zgenom load "$HOME/.zsh"
 
   zgenom load zsh-users/zsh-syntax-highlighting
@@ -49,11 +40,6 @@ if ! zgenom saved; then
   zgenom load zsh-users/zsh-completions
 
   [[ -x $(whence -cp upterm) ]] && upterm completion zsh > $(brew --prefix)/share/zsh/site-functions/_upterm
-
-  # zgenom ohmyzsh themes/arrow
-  # zgenom load mafredri/zsh-async
-  # zgenom load sindresorhus/pure
-
   [[ -d $(brew --prefix)/share/zsh/site-functions ]] && zgenom load --completion $(brew --prefix)/share/zsh/site-functions
 
   zgenom save
@@ -71,6 +57,7 @@ fi
 [ -d ~/.local ] && path=(~/.local/bin $path)
 [[ -f $(brew --prefix asdf)/libexec/asdf.sh ]] && source $(brew --prefix asdf)/libexec/asdf.sh
 
+eval "$(brew shellenv)"
 eval "$(starship init zsh)"
 
 # default editors
