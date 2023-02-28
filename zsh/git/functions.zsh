@@ -13,6 +13,26 @@ function git_main_branch() {
   fi
 }
 
+unalias gcom 2>/dev/null
+function gcom() {
+  git checkout $(git_main_branch)
+}
+
+unalias gdom 2>/dev/null
+function gdom() {
+  git diff origin/$(git_main_branch)
+}
+
+unalias gdm 2>/dev/null
+function gdm() {
+  git diff $(git_main_branch) $@
+}
+
+unalias grbm 2>/dev/null
+function grbm() {
+  git rebase -i $(git_main_branch)
+}
+
 unalias g 2>/dev/null # yes I know this is a dirty play
 function g() {
   cmd=`which hub`
@@ -47,7 +67,7 @@ function gclmkd() {
   directory=$arr[1]
 
   mkdir $directory && cd $directory
-  gh clone $repo
+  gh repo clone $repo
 }
 
 
