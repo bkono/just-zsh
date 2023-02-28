@@ -2,7 +2,11 @@
 # With arguments: acts like `git`
 
 function git_main_branch() {
-  git symbolic-ref refs/remotes/origin/HEAD | cut -d'/' -f4
+  if [[ $(git rev-parse --git-dir 2> /dev/null) ]]; then
+    git symbolic-ref -q HEAD | cut -d'/' -f3
+  else
+    return 1
+  fi
 }
 
 unalias g 2>/dev/null # yes I know this is a dirty play
