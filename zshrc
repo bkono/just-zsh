@@ -18,20 +18,20 @@ if ! zgenom saved; then
   # extensions
   zgenom load jandamm/zgenom-ext-release
 
+  # omz
   zgenom ohmyzsh
   zgenom ohmyzsh plugins/git
   zgenom ohmyzsh plugins/sudo
   zgenom ohmyzsh --completion plugins/docker-compose
   [[ "$(uname -s)" = Darwin ]] && zgenom ohmyzsh plugins/macos
 
+  # qol
   zgenom load djui/alias-tips
   zgenom load hlissner/zsh-autopair
   zgenom load rupa/z
 
-  # releases
-  # zgenom release junegunn/fzf --pattern '*darwin_arm64*'
+  # fzf
   zgenom load junegunn/fzf shell
-  # zgenom load junegunn/fzf-git.sh
   zgenom load urbainvaes/fzf-marks
 
   zgenom load "$HOME/.zsh"
@@ -42,9 +42,6 @@ if ! zgenom saved; then
 
   [[ -x $(whence -cp upterm) ]] && upterm completion zsh > $(brew --prefix)/share/zsh/site-functions/_upterm
   [[ -d $(brew --prefix)/share/zsh/site-functions ]] && zgenom load --completion $(brew --prefix)/share/zsh/site-functions
-
-  # keep late in the plugin list
-  zgenom load Aloxaf/fzf-tab
 
   zgenom save
 
