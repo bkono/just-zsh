@@ -29,10 +29,9 @@ if ! zgenom saved; then
   zgenom load rupa/z
 
   # releases
-  zgenom release junegunn/fzf --pattern '*darwin_arm64*'
   # zgenom release junegunn/fzf --pattern '*darwin_arm64*'
   zgenom load junegunn/fzf shell
-  # zgenom load ubainvaes/fzf-marks
+  # zgenom load junegunn/fzf-git.sh
   zgenom load urbainvaes/fzf-marks
 
   zgenom load "$HOME/.zsh"
@@ -44,6 +43,9 @@ if ! zgenom saved; then
   [[ -x $(whence -cp upterm) ]] && upterm completion zsh > $(brew --prefix)/share/zsh/site-functions/_upterm
   [[ -d $(brew --prefix)/share/zsh/site-functions ]] && zgenom load --completion $(brew --prefix)/share/zsh/site-functions
 
+  # keep late in the plugin list
+  zgenom load Aloxaf/fzf-tab
+
   zgenom save
 
 # Compile zsh files
@@ -52,10 +54,10 @@ if ! zgenom saved; then
   echo "...done"
 fi
 
-[ -d $HOME/.zgenom/bin ] && path=(~/.zgenom/bin $path)
 [ -d $(brew --prefix)/bin ] && path=($(brew --prefix)/bin $path)
 [ -d $(brew --prefix llvm) ] && path=($(brew --prefix llvm)/bin $path)
 [ -d /Applications/Postgres.app/Contents/Versions/latest/bin ] && path=(/Applications/Postgres.app/Contents/Versions/latest/bin $path)
+[ -d $HOME/.zgenom/bin ] && path=(~/.zgenom/bin $path)
 [ -d ~/.local ] && path=(~/.local/bin $path)
 [[ -f $(brew --prefix asdf)/libexec/asdf.sh ]] && source $(brew --prefix asdf)/libexec/asdf.sh
 
