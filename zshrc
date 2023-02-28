@@ -10,6 +10,10 @@ export ZGEN_RESET_ON_CHANGE=(${HOME}/.zshrc ${HOME}/.zshrc.local)
 # check for updates every 7 days
 zgenom autoupdate
 
+[ -d /usr/local/bin ] && path=(/usr/local/bin $path)
+[ -d /opt/homebrew/bin ] && path=(/opt/homebrew/bin $path)
+eval "$(brew shellenv)"
+
 if ! zgenom saved; then
   echo "Creating zgenom save state..."
 
@@ -51,14 +55,10 @@ if ! zgenom saved; then
   echo "...done"
 fi
 
-[ -d $(brew --prefix)/bin ] && path=($(brew --prefix)/bin $path)
-[ -d $(brew --prefix llvm) ] && path=($(brew --prefix llvm)/bin $path)
-[ -d /Applications/Postgres.app/Contents/Versions/latest/bin ] && path=(/Applications/Postgres.app/Contents/Versions/latest/bin $path)
 [ -d $HOME/.zgenom/bin ] && path=(~/.zgenom/bin $path)
 [ -d ~/.local ] && path=(~/.local/bin $path)
 [[ -f $(brew --prefix asdf)/libexec/asdf.sh ]] && source $(brew --prefix asdf)/libexec/asdf.sh
 
-eval "$(brew shellenv)"
 eval "$(starship init zsh)"
 
 # default editors
