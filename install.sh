@@ -18,10 +18,15 @@ if [[ ! -d $(brew --prefix starship) ]]; then
   brew install starship
 fi
 
+if [[ ! -d $(brew --prefix fzf) ]]; then
+  echo "Installing fzf..."
+  brew install fzf
+fi
+
 echo "Linking .zshrc..."
 ln -snfh $PWD/zshrc $HOME/.zshrc
 echo "Linking .zsh folder..."
-[[ -d $HOME/.zsh ]] && echo "Moving old .zsh folder to backup..." && mv $HOME/.zsh $HOME/zsh-bak
+[[ -d $HOME/.zsh && ! ($HOME/.zsh -ef $PWD/zsh) ]] && echo "Moving old .zsh folder to backup..." && mv $HOME/.zsh $HOME/zsh-bak
 ln -snfh $PWD/zsh $HOME/.zsh
 echo "Linking starship.toml..."
 [[ ! -d $HOME/.config ]] && mkdir $HOME/.config

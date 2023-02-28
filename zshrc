@@ -30,8 +30,10 @@ if ! zgenom saved; then
 
   # releases
   zgenom release junegunn/fzf --pattern '*darwin_arm64*'
+  # zgenom release junegunn/fzf --pattern '*darwin_arm64*'
   zgenom load junegunn/fzf shell
   # zgenom load ubainvaes/fzf-marks
+  zgenom load urbainvaes/fzf-marks
 
   zgenom load "$HOME/.zsh"
 
