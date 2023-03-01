@@ -26,6 +26,7 @@ if ! zgenom saved; then
   # omz
   zgenom ohmyzsh
   zgenom ohmyzsh plugins/git
+  zgenom ohmyzsh plugins/ssh-agent
   zgenom ohmyzsh plugins/sudo
   zgenom ohmyzsh --completion plugins/docker-compose
   [[ "$(uname -s)" = Darwin ]] && zgenom ohmyzsh plugins/macos

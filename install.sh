@@ -51,7 +51,7 @@ if [[ ! -d $HOME/.zgenom ]]; then
 fi
 
 # install the things
-prereqs=('asdf' 'starship' 'fzf' 'bat' 'gh' 'direnv')
+prereqs=('asdf' 'starship' 'fzf' 'bat' 'gh' 'direnv' 'rg')
 for prereq in $prereqs; do
   brew_install $prereq
 done
